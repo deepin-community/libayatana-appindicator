@@ -1,0 +1,193 @@
+libayatana-appindicator (0.5.5-3) unstable; urgency=medium
+
+  * debian/patches:
+    + Add 1001_dbus-test-runner-keep-env.patch. Make sure the build HOME
+      variable is propagated into dh_auto_test.
+  * debian/rules:
+    + Run each set of unit tests in no-parallel mode and fali if unit tests
+      fail. This fixes flaky unit tests and stops ignoring those failures.
+      (Closes: #982845).
+    + Run gtk2/gtk3 unit tests in two different build HOME dirs.
+    + No duplicate / nested dh_auto_test calls.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Fri, 30 Apr 2021 17:17:22 +0200
+
+libayatana-appindicator (0.5.5-2) unstable; urgency=medium
+
+  * debian/rules:
+    + Clean up some files, that upstream should handle, in fact.
+    + Run gtk-doc during GTK-3 builds (not GTK-2).
+    + Fix arch:all-only builds (dpkg-buildpackage -A).
+
+ -- Mike Gabriel <sunweaver@debian.org>  Fri, 21 Aug 2020 20:06:13 +0000
+
+libayatana-appindicator (0.5.5-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/patches:
+    + Drop 2002_drop-python2-code.patch. Resolved upstream.
+  * debian/control:
+    + Improve description of bin:pkg libayatana-appindicator0.1-cil-dev.
+    + Fix version of B-D cli-common-dev ( (>= 0.5.7)  --> (>= 0.8~) ).
+    + Bump Standards-Version: to 4.5.0. No changes needed.
+    + Bump DH compat level to version 13.
+    + Drop D libdbus-glib-1-dev from libayatana-appindicator-dev and
+      libayatana-appindicator3-dev. (Closes: #954105).
+
+ -- Mike Gabriel <sunweaver@debian.org>  Fri, 24 Jul 2020 07:32:42 +0200
+
+libayatana-appindicator (0.5.4-2) unstable; urgency=medium
+
+  * debian/rules:
+    + Stop using pyversions. Drop concept of Py2.x specific GTK-2 builds.
+      (Closes: #949179).
+
+ -- Mike Gabriel <sunweaver@debian.org>  Sat, 25 Jan 2020 11:44:35 +0100
+
+libayatana-appindicator (0.5.4-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/{control,compat}:
+    + Switch to debhelper-compat notation. Bump to DH compat level version 12.
+  * debian/{control,rules,*}:
+    + Drop Python2 bindings support. Drop bin:pkg python-ayatana-appindicator.
+      (Closes: #912959, #936843).
+  * debian/patches:
+    + Add 2002_drop-python2-code.patch: Don't build anything Python2 related.
+  * debian/control:
+    + Bump Standards-Version: to 4.4.1. No changes needed.
+    + Add Rules-Requires-Root: field and set it to "no".
+  * debian/libayatana-appindicator*.symbols:
+    + Add Build-Depends-Package: metadata field.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Mon, 11 Nov 2019 20:13:44 +0100
+
+libayatana-appindicator (0.5.3-4) unstable; urgency=medium
+
+  * debian/control:
+    + Update Vcs-*: fields. Packaging Git has been migrated to salsa.debian.org.
+    + Bump Standards-Version: to 4.2.0. No changes needed.
+  * debian/upstream/metadata:
+    + Add file. Comply with DEP-12.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Tue, 14 Aug 2018 19:18:49 +0200
+
+libayatana-appindicator (0.5.3-3) unstable; urgency=medium
+
+  * debian/control:
+    + Add Ds for libgtk*-dev to libaytana-appindicator*-dev.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Thu, 22 Mar 2018 11:08:04 +0100
+
+libayatana-appindicator (0.5.3-2) unstable; urgency=medium
+
+  * debian/control:
+    + Drop from Recommends: ayatana-indicator-application. The -application
+      indicator should be pulled in from the desktop env's side that wants to
+      utilize it (e.g. via the indicator-render applet). (Closes: #891927).
+
+ -- Mike Gabriel <sunweaver@debian.org>  Tue, 20 Mar 2018 19:42:18 +0100
+
+libayatana-appindicator (0.5.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/control:
+    + Switch D (python-ayatana-appindicator) from python-gobject to
+      python-gobject-2. (Closes: #890156).
+    + Bump Standards-Version: to 4.1.3. No changes needed.
+  * debian/{control,compat}:
+    + Bump to DH version level 11.
+  * debian/rules:
+    + Don't set dpkg-architecture variable. Use dpkg/architecture.mk include
+      file instead.
+  * debian/libayatana-appindicator3-dev.examples:
+    + Add Vala examples to bin:pkg.
+  * debian/libayatana-appindicator0.1-cil.examples:
+    + Add Mono/CLI examples to bin:pkg.
+  * debian/copyright:
+    + Use secure URI for copyright format reference.
+  * debian/watch:
+    + Use secure URL to obtain upstream sources.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Tue, 20 Mar 2018 11:48:38 +0100
+
+libayatana-appindicator (0.5.2-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/patches:
+    + Drop all 100X series patches. All included in this upstream release.
+  * debian/control:
+    + Drop dh-autoreconf from B-D.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Thu, 26 Oct 2017 13:12:37 +0200
+
+libayatana-appindicator (0.5.1-5) unstable; urgency=medium
+
+  * debian/patches:
+     + Add 0003-src-app-indicator.c-Avoid-usage-of-PATH_MAX-macro.-F.patch.
+       Avoid usage of PATH_MAX. Fixes FTBFS on Debian GNU/Hurd.
+  * debian/control:
+    + Bump Standards-Version: to 4.1.1. No changes needed.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Fri, 06 Oct 2017 20:43:52 +0200
+
+libayatana-appindicator (0.5.1-4) unstable; urgency=medium
+
+  * debian/{control,rules}:
+    + Fix upload problems due to negated architectures listed under
+      debian/control's Architecture: field (which seems unsupported).
+      Currently the following architectures have cli-mono support:
+      amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64
+      kfreebsd-i386 powerpc ppc64. So let's try to upload again...
+      (Closes: #876803).
+  * debian/patches:
+    + Add 0001_fix-parallel-builds-in-mono-bindings.patch
+    + Add 0002_fix-another-namespace-issue-in-python-bindings.patch
+      ... both cherry-picked from upstream.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Fri, 29 Sep 2017 14:33:15 +0200
+
+libayatana-appindicator (0.5.1-3) unstable; urgency=medium
+
+  * debian/{control,compat}:
+    + Bump DH version level to 10 (and bump B-D to >= 10.3).
+  * debian/control:
+    + Exclude cli-mono bin:pkgs on architectures that cli-mono does not support.
+      (Closes: #876803, hopefully).
+  * debian/rules:
+    + Switch from dh_install --fail-mising to dh_missing --fail-missing.
+    + Don't run dh_install/dh_missing for cli-mono binding packages on
+      non-supported architectures.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Tue, 26 Sep 2017 10:13:19 +0200
+
+libayatana-appindicator (0.5.1-2) unstable; urgency=medium
+
+  * debian/rules:
+    + Adapt to excluding Mono/CLI bindings for various more architectures.
+  * debian/control:
+    + Bump versioned B-D on cli-common-dev to (>= 0.5.7).
+    + Switch cli-mono section packages from arch:all to arch:any.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Sat, 23 Sep 2017 10:10:27 +0200
+
+libayatana-appindicator (0.5.1-1) unstable; urgency=medium
+
+  * New upstream release. (Closes: #867512, #876493).
+  * debian/control:
+    + Avoid FTBFS due to missing Mono/CLI B-Ds for several more architectures
+      (now: !arm64 !ppc64el !mips !mips64el !alpha !hppa !hurd-i386 !m68k
+      !powerpcspe !sh4 !sparc64 !x32).
+    + Bump Standards-Version: to 4.1.0 No changes needed.
+  * debian/{control,copyright,watch}:
+    + Update upstream URLs to new upstream project locations.
+
+  * Upload to unstable.
+
+ -- Mike Gabriel <sunweaver@debian.org>  Sat, 23 Sep 2017 01:29:46 +0200
+
+libayatana-appindicator (0.5.0-1) experimental; urgency=medium
+
+  * Initial release to Debian. (Closes: #863170).
+
+ -- Mike Gabriel <sunweaver@debian.org>  Mon, 22 May 2017 23:33:41 +0200

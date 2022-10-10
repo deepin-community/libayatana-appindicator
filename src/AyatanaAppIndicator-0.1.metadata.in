@@ -1,0 +1,3 @@
+AyatanaAppIndicator name="AppIndicator"
+Indicator.priv hidden="1"
+IndicatorPrivate hidden="1"
