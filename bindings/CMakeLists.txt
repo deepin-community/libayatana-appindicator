@@ -1,0 +1,6 @@
+if (ENABLE_BINDINGS_VALA AND FLAVOUR_GTK3)
+    add_subdirectory(vala)
+endif()
+if (ENABLE_BINDINGS_MONO)
+    add_subdirectory(mono)
+endif()
