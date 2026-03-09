@@ -1,0 +1,15 @@
+Description: Hardcoded delay in unit test is too low for the hardware used by the riscv64 build daemons of the Debian project.
+Author: Aurelien Jarno <aurel32@debian.org>
+Origin: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1086191
+
+--- a/tests/test-libappindicator-fallback-watcher.c
++++ b/tests/test-libappindicator-fallback-watcher.c
+@@ -72,7 +72,7 @@
+         return 1;
+     }
+ 
+-    g_usleep (500000);
++    g_usleep (750000);
+     gboolean bOwner = FALSE;
+     GVariant *pResult = g_dbus_proxy_call_sync (pProxy, "NameHasOwner", g_variant_new ("(s)", "org.test"), G_DBUS_CALL_FLAGS_NONE, -1, NULL, &pError);
+ 

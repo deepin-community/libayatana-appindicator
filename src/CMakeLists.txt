@@ -118,7 +118,6 @@ file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/gen-notification-watcher.xml.c" ${GEN_NO
 
 # libayatana-appindicator{,3}.so
 
-set_source_files_properties(${SOURCES} PROPERTIES COMPILE_FLAGS ${COMPILE_FLAGS})
 add_library("${ayatana_appindicator_gtkver}" SHARED ${SOURCES})
 set_target_properties("${ayatana_appindicator_gtkver}" PROPERTIES VERSION 1.0.0 SOVERSION 1)
 target_compile_definitions("${ayatana_appindicator_gtkver}" PUBLIC G_LOG_DOMAIN="libayatana-appindicator")
@@ -126,9 +125,10 @@ target_include_directories("${ayatana_appindicator_gtkver}" PUBLIC ${PROJECT_DEP
 target_include_directories("${ayatana_appindicator_gtkver}" PUBLIC ${CMAKE_CURRENT_BINARY_DIR})
 target_include_directories("${ayatana_appindicator_gtkver}" PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_link_libraries("${ayatana_appindicator_gtkver}" ${PROJECT_DEPS_LIBRARIES})
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/lib${ayatana_appindicator_gtkver}.so" DESTINATION "${CMAKE_INSTALL_FULL_LIBDIR}")
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/lib${ayatana_appindicator_gtkver}.so.1" DESTINATION "${CMAKE_INSTALL_FULL_LIBDIR}")
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/lib${ayatana_appindicator_gtkver}.so.1.0.0" DESTINATION "${CMAKE_INSTALL_FULL_LIBDIR}")
+if(NOT APPLE)
+    target_link_options ("${ayatana_appindicator_gtkver}" PRIVATE "-Wl,--version-script=${CMAKE_CURRENT_SOURCE_DIR}/app-indicator.symbols")
+endif()
+install(TARGETS "${ayatana_appindicator_gtkver}" LIBRARY DESTINATION "${CMAKE_INSTALL_FULL_LIBDIR}")
 
 # AyatanaAppIndicator{,3}-0.1.gir
 
