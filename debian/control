@@ -8,82 +8,26 @@ Build-Depends: cmake,
                cmake-extras (>= 1.5-8~),
                debhelper-compat (= 13),
                at-spi2-core,
-               cli-common-dev [amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64] <!nocil>,
                gobject-introspection,
                intltool,
                gtk-doc-tools,
                libxml2-utils,
-               libnunit-cil-dev [amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64] <!nocil>,
                dbus-test-runner,
                xvfb,
                valac,
-               mono-devel [amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64] <!nocil>,
                libglib2.0-dev,
                libgtk-3-dev,
-               libgtk2.0-dev,
                procps,
-               gtk-sharp3-gapi [amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64] <!nocil>,
-               libgtk3.0-cil-dev [amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64] <!nocil>,
-               gtk-sharp2-gapi [amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64] <!nocil>,
-               libgtk2.0-cil-dev [amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64] <!nocil>,
                libdbus-glib-1-dev,
-               libayatana-indicator-dev,
                libayatana-indicator3-dev,
                libdbusmenu-glib-dev,
-               libdbusmenu-gtk-dev,
                libdbusmenu-gtk3-dev,
                libgirepository1.0-dev,
-Standards-Version: 4.6.2
+Standards-Version: 4.7.2
 Rules-Requires-Root: no
 Homepage: https://github.com/AyatanaIndicators/libayatana-appindicator
 Vcs-Git: https://salsa.debian.org/debian-ayatana-team/libayatana-appindicator.git
-Vcs-Browser: https://salsa.debian.org/debian-edu-ayatana-team/libayatana-appindicator
-
-Package: libayatana-appindicator1
-Architecture: any
-Depends: ${shlibs:Depends},
-         ${misc:Depends},
-Provides: libappindicator1 (= 12.10)
-Conflicts: libappindicator1,
-Replaces: libappindicator1,
-Description: Ayatana Application Indicators (GTK-2+ version)
- A library and indicator to take menus from applications and place them in
- the panel.
- .
- This package contains shared libraries to be used by applications compiled
- against GTK-2+.
-
-Package: gir1.2-ayatanaappindicator-0.1
-Section: introspection
-Architecture: any
-Depends: ${misc:Depends},
-         ${gir:Depends},
-Description: Typelib files for libayatana-appindicator1 (GTK-2+ version)
- A library and indicator to take menus from applications and place them in
- the panel.
- .
- This package can be used by other packages using the GIRepository format
- to generate dynamic bindings (GTK-2+ version).
-
-Package: libayatana-appindicator-dev
-Section: libdevel
-Architecture: any
-Depends: ${shlibs:Depends},
-         ${misc:Depends},
-         libayatana-indicator-dev (>= 0.9.0),
-         libdbusmenu-glib-dev,
-         libgtk2.0-dev,
-         gir1.2-ayatanaappindicator-0.1 (= ${binary:Version}),
-         libayatana-appindicator1 (= ${binary:Version}),
-Provides: libappindicator-dev (= 12.10)
-Conflicts: libappindicator-dev,
-Replaces: libappindicator-dev,
-Description: Ayatana Application Indicators (development files, GTK-2+ version)
- A library and indicator to take menus from applications and place them in
- the panel.
- .
- This package contains files that are needed to build applications
- (GTK-2+ version).
+Vcs-Browser: https://salsa.debian.org/debian-ayatana-team/libayatana-appindicator
 
 Package: libayatana-appindicator-doc
 Section: doc
@@ -140,55 +84,3 @@ Description: Typelib files for libayatana-appindicator3-1 (GTK-3+ version)
  .
  This package can be used by other packages using the GIRepository format
  to generate dynamic bindings (GTK-3+ version).
-
-Package: libayatana-appindicator0.1-cil
-Build-Profiles: <!nocil>
-Section: cli-mono
-Architecture: amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64
-Depends: ${shlibs:Depends},
-         ${misc:Depends},
-         ${cli:Depends},
-Description: CLI bindings for libayatana-appindicator
- This package provides the appindicator-sharp assembly that allows CLI (.NET)
- programs to take menus from applications and place them in the panel.
- .
- This package contains assemblies to be used by Mono applications.
-
-Package: libayatana-appindicator0.1-cil-dev
-Build-Profiles: <!nocil>
-Section: cli-mono
-Architecture: amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64
-Depends: ${shlibs:Depends},
-         ${misc:Depends},
-         ${cli:Depends},
-         libayatana-appindicator0.1-cil (= ${binary:Version}),
-Description: Ayatana Application Indicators for Mono
- A library and indicator to take menus from applications and place them in
- the panel.
- .
- This package contains files that are needed to build Mono applications.
-
-Package: libayatana-appindicator3-0.1-cil
-Section: cli-mono
-Architecture: amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64
-Depends: ${shlibs:Depends},
-         ${misc:Depends},
-         ${cli:Depends},
-Description: CLI bindings for libayatana-appindicator3
- This package provides the appindicator-sharp assembly that allows CLI (.NET)
- programs to take menus from applications and place them in the panel.
- .
- This package contains assemblies to be used by GTK-2+ Mono applications.
-
-Package: libayatana-appindicator3-0.1-cil-dev
-Section: cli-mono
-Architecture: amd64 arm64 armel armhf i386 mipsel ppc64el s390x kfreebsd-amd64 kfreebsd-i386 powerpc ppc64
-Depends: ${shlibs:Depends},
-         ${misc:Depends},
-         ${cli:Depends},
-         libayatana-appindicator3-0.1-cil (= ${binary:Version}),
-Description: Ayatana Application Indicators for Mono (GTK-3+ variant)
- A library and indicator to take menus from applications and place them in
- the panel.
- .
- This package contains files that are needed to build GTK-3+ Mono applications.

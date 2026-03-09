@@ -16,8 +16,8 @@ requires:
     - gtk3
     - glib2
     - libdbusmenu-gtk3
-    - dbus-glib
     - gobject-introspection
+    - gtk3-docs
 
   debian:
     # Useful URL: https://salsa.debian.org/debian-ayatana-team/libayatana-appindicator
@@ -47,12 +47,12 @@ requires:
     - libgtk3.0-cil-dev
     - gtk-sharp2-gapi
     - libgtk2.0-cil-dev
-    - libdbus-1-dev
-    - libdbus-glib-1-dev
     - libdbusmenu-glib-dev
     - libdbusmenu-gtk3-dev
     - libdbusmenu-gtk-dev
     - libgirepository1.0-dev
+    - libgtk-3-doc
+    - libdbusmenu-glib-doc
 
   ubuntu:
     - autopoint
@@ -81,12 +81,12 @@ requires:
     - libgtk3.0-cil-dev
     - gtk-sharp2-gapi
     - libgtk2.0-cil-dev
-    - libdbus-1-dev
-    - libdbus-glib-1-dev
     - libdbusmenu-glib-dev
     - libdbusmenu-gtk3-dev
     - libdbusmenu-gtk-dev
     - libgirepository1.0-dev
+    - libgtk-3-doc
+    - libdbusmenu-glib-doc
 
 variables:
   - 'CHECKERS="
@@ -140,7 +140,6 @@ before_scripts:
 
 build_scripts:
   - if [ ${DISTRO_NAME} == "debian" ];then
-  -     export CFLAGS+=" -Wsign-compare -Wunused-parameter"
   -     cppcheck --enable=warning,style,performance,portability,information,missingInclude .
   - fi
   -
@@ -148,7 +147,8 @@ build_scripts:
   -     mkdir -p build/gtk3/
   -     cd build/gtk3/
   -     if [ ${DISTRO_NAME} == "debian" ] || [ ${DISTRO_NAME} == "ubuntu" ]; then
-  -         scan-build $CHECKERS cmake ../../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_TESTS=ON -DFLAVOUR_GTK3=ON
+            # We could use -DENABLE_WERROR=ON, but Debian Stable has an ancient Clang.
+  -         scan-build $CHECKERS cmake ../../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_TESTS=ON -DFLAVOUR_GTK3=ON -DENABLE_GTKDOC=ON
   -     else
   -         scan-build $CHECKERS cmake ../../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DFLAVOUR_GTK3=ON
   -     fi
@@ -156,7 +156,7 @@ build_scripts:
   -     mkdir -p build/gtk2/
   -     cd build/gtk2/
   -     if [ ${DISTRO_NAME} == "debian" ] || [ ${DISTRO_NAME} == "ubuntu" ]; then
-  -         scan-build $CHECKERS cmake ../../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_TESTS=ON -DFLAVOUR_GTK2=ON
+  -         scan-build $CHECKERS cmake ../../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DENABLE_TESTS=ON -DFLAVOUR_GTK2=ON -DENABLE_GTKDOC=ON
   -     else
   -         scan-build $CHECKERS cmake ../../ -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_VERBOSE_MAKEFILE=ON -DFLAVOUR_GTK2=ON
   -     fi
